@@ -1,0 +1,216 @@
+<WelcomeScreen>
+    MDFloatLayout:
+        md_bg_color: "#F5F5F5"
+        allow_stretch:True
+        Image:
+            source: "mask colored.png"   
+            size_hint: 0.8, 0.8
+            pos_hint: {'center_x': 0.5,'center_y': 0.6}
+            halign:'center'
+        MDLabel:
+            text:"TEAM 22"    
+            pos_hint: {'center_x': 0.5, 'center_y': 0.2}
+            halign: 'center'
+            theme_text_color: 'Custom'
+            text_color: 0,0,0,1
+            font_size: "34sp"
+        FloatLayout:
+            MDRoundFlatIconButton:
+                text: "Click to start"
+                icon: "star"
+                pos_hint: {'center_x': .5, 'center_y': .1}
+                on_press:
+                    root.manager.transition.direction="left"
+                    root.manager.current="login"
+<LoginPage>:
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: welcome_label
+            text: "WELCOME"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        TextInput:
+            id: email
+            hint_text: "email"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        TextInput:
+            id: password
+            hint_text: "password"
+            icon_right: "eye-off"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDRoundFlatButton:
+            text: "LOG IN"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: 
+                app.logger()
+                root.manager.transition.direction="left"
+                root.manager.current="afterlogin"
+        MDRoundFlatButton:
+            text: "CLEAR"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.clear()
+        Widget:
+            size_hint_y: None
+            height: 10
+    MDRoundFlatButton:
+        text: "REGISTER"
+        font_size: 12
+        pos_hint: {"center_x": 0.5,'center_y': 0.1}
+        on_press:
+            root.manager.transition.direction="left"
+            root.manager.current="register"
+<AfterLogin>:
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: 2FA
+            text: "VERIFY"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        TextInput:
+            id: OPT
+            hint_text: "OPT"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+        MDRoundFlatButton:
+            text: "LOG IN"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: app.Verify_2FA()
+<RegisterPage>:
+    MDCard:
+        size_hint: None, None
+        size: 300, 400
+        pos_hint: {"center_x": 0.5,"center_y": 0.5}
+        elevation: 10
+        padding: 25
+        spacing: 25
+        orientation: 'vertical'
+        MDLabel:
+            id: 2FA
+            text: "VERIFY"
+            font_size: 40
+            halign: 'center'
+            size_hint_y: None
+            height: self.texture_size[1]
+            padding_y: 15
+
+        TextInput:
+            id: user
+            hint_text: "username"
+            icon_right: "account"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        TextInput:
+            id: password
+            hint_text: "password"
+            icon_right: "password"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+            password: True
+        TextInput:
+            id: email
+            hint_text: "email-ID"
+            icon_right: "email"
+            size_hint_x: None
+            width: 200
+            font_size: 18
+            pos_hint: {"center_x": 0.5}
+        MDRoundFlatButton:
+            text: "REGISTER"
+            font_size: 12
+            pos_hint: {"center_x": 0.5}
+            on_press: 
+                app.logger_re()
+                root.manager.transition.direction="right"
+                root.manager.current="login"
+<MenuScreen>:
+    orientation: 'vertical'
+    MDFloatLayout:
+        md_bg_color: [1,1,1,1]
+        allow_stretch:True
+        MDBoxLayout:
+            orientation:'horizontal'
+            Image:
+                source: "Project_sarvagya.png"
+                size_hint:0.1,0.1
+                pos_hint:{'center_x':.005,'center_y':.93}
+                allow_stretch: True
+                halign:'center'
+        Image:
+            source:"cycle.png"
+            size_hint: 0.6,0.6
+            pos_hint: {'x':0.2 , 'y':0.2 }
+        MDRaisedButton:
+            adaptive_size: True
+            text: "choose File"
+            md_bg_color:1,0.5,1,1
+            icon: "upload"
+            pos_hint: {'center_x': .15, 'center_y': .1}
+            on_press:
+                app.file_chooser()
+        MDRoundFlatIconButton:
+            text: "Upload File"
+            icon: "send"
+            pos_hint: {'center_x': .5, 'center_y': .1}
+            on_press:
+                print("sent")
+        MDRaisedButton:
+            text: "Recieve files"
+            icon: "signal"
+            pos_hint: {'center_x': .85, 'center_y': .1}
+            on_press:
+                root.manager.transition.direction="right"
+                root.manager.current="upload"
+<RecievedScreen>:
+    BoxLayout:
+        allow_stretch:True
+        orientation: "horizontal"
+        BoxLayout:
+            Button:
+                text: ''
+            Button:
+                text: 'Back to menu'
+                on_press:
+                    root.manager.transition.direction = 'right'
+                    root.manager.current = 'menu'
+        # MDBottomAppBar

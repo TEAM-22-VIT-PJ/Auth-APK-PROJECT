@@ -1,0 +1,23 @@
+"""Steps to Create an OTP Verification System using Python"""
+# 1. first, we will create a 6 digit random number.
+# 2. than we will store this number to a variable
+# 3. then we need to write a program to send the email
+# 4. when sending the email, we need to use the OP as a message
+# 5. finally we need to request 2 user input, first for the user's email and then forthe OTP that the user has recived
+import os
+import math
+import random
+import smtplib
+
+
+server=smtplib.SMTP('smtp.gmail.com',587)
+server.starttls()
+server.login('aj.mrfya@gmail.com','gzcodqfajxsaehrp')
+emailid = input ("Please Enter your Email:")
+server.sendmail('aj.mrfya@gmail.com',emailid, msg)
+server.quit()
+a=input("PLease Enter you OTP >>:")
+if a == OTP:
+    print("Yes, Your OTP is Verified")
+else:
+    print("Please check your OTP Again")
